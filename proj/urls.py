@@ -20,15 +20,16 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 from rest_framework import routers
-from proj.words.views import WordItemViewset, SuggestWordsView
+from proj.transactions.views import TransactionsView, ProcessTransactionsView, UpdateTransactionView
 
 router = routers.DefaultRouter()
-router.register(r'words', WordItemViewset)
 
 urlpatterns = [
-    path('api/', include(router.urls)),
-    path('words/', include('proj.words.urls')),
+    path('api/v1/', include(router.urls)),
+    path('words/', include('proj.transactions.urls')),
     path('', TemplateView.as_view(template_name='frontend/index.html')),
     path('admin/', admin.site.urls),
-    path('api/suggest/', SuggestWordsView.as_view(), name='suggest-words'),
+    path('api/v1/getTransactionsByMonth/<str:month>/', TransactionsView.as_view(), name='transactions-month'),
+    path('api/v1/processTransactions/', ProcessTransactionsView.as_view(), name='process-transactions'),
+    path('api/v1/updateTransaction/<str:tx_id>/', UpdateTransactionView.as_view(), name='update-transaction'),
 ]

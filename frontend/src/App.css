@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 100%;
   pointer-events: none;
 }
 
@@ -42,7 +42,7 @@
   text-align: center;
   /*max-width: 400px;*/
   margin: 0 auto;
-  height: 100vh;
+  /*height: 100vh;*/
   min-width: 500px;
   min-height: 702px;
   width: 40%;

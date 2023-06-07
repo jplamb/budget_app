@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'proj.words.apps.WordsConfig',
+    'proj.transactions.apps.TransactionsConfig',
     'webpack_loader',
     'corsheaders'
 ]
