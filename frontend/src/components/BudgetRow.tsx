@@ -31,13 +31,13 @@ const BudgetRow: React.FC<BudgetRowProps> = ({ categoryName, categoryBudget , ca
                     <th className="categoryName header">
                         {categoryName}
                     </th>
-                    <th className="categoryBudgetedAmount header">
+                    <th className="categoryBudgetedAmount header text-center">
                         ${categoryBudget.toFixed(0)}
                     </th>
-                    <th className="categoryActualAmount header">
+                    <th className="categoryActualAmount header text-center">
                         {formatForNegative(actualAmount)}
                     </th>
-                    <th className="categoryDiffAmount header">
+                    <th className="categoryDiffAmount header text-center">
                         {formatForNegative(categoryBudget - actualAmount)}
                     </th>
                 </>
@@ -46,13 +46,13 @@ const BudgetRow: React.FC<BudgetRowProps> = ({ categoryName, categoryBudget , ca
                     <th className="categoryName">
                         {categoryName}
                     </th>
-                    <td className="categoryBudgetedAmount">
+                    <td className="categoryBudgetedAmount text-center">
                         ${categoryBudget.toFixed(0)}
                     </td>
-                    <td className="categoryActualAmount">
+                    <td className="categoryActualAmount text-center">
                         {formatForNegative(actualAmount)}
                     </td>
-                    <td className="categorydiffAmount">
+                    <td className="categorydiffAmount text-center">
                         {formatForNegative(categoryBudget - actualAmount)}
                     </td>
                 </>
