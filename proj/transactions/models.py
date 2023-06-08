@@ -57,3 +57,9 @@ class Transaction(models.Model):
 
     def __str__(self):
         return f"{self.date} - {self.payee} - {self.amount} - {self.category}"
+
+
+class Envelope(models.Model):
+    name = models.CharField(max_length=150, unique=True)
+    amount = models.FloatField()
+    last_updated = models.DateTimeField(auto_now=True)

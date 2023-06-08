@@ -1,12 +1,12 @@
 import logging
 from django.shortcuts import render
-from rest_framework import status
+from rest_framework import status, viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .utils import get_transaction_data, process_transactions
-from.serializers import TransactionSerializer
-from proj.transactions.models import Transaction
+from.serializers import TransactionSerializer, EnvelopeSerializer
+from proj.transactions.models import Transaction, Envelope
 
 
 LOG_LEVEL = logging.DEBUG
@@ -17,6 +17,7 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s]: %(message)s",  # Set the log format
     datefmt="%Y-%m-%d %H:%M:%S"  # Set the date format
 )
+
 
 class TransactionsView(APIView):
     def get(self, request, month, *args, **kwargs):
@@ -63,6 +64,14 @@ class UpdateTransactionView(APIView):
             return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
         return Response(status=status.HTTP_200_OK)
+
+
+class EnvelopeViewSet(viewsets.ModelViewSet):
+    queryset = Envelope.objects.all()
+    serializer_class = EnvelopeSerializer
+
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
 
 def index(request):

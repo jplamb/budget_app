@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-_2c51e@=ma(-b)3$pbwtbswk2!f=&**t-@#^-+3xvz#^)ym=um
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -165,7 +165,6 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
     'Token',
 ]
 
-
-PAST_WORDLE_ANSWERS_URL = "https://www.rockpapershotgun.com/wordle-past-answers"
-IS_TEST_MODE = False
-NUM_GUESSES_SUGGESTED = 10
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8001",
+]
