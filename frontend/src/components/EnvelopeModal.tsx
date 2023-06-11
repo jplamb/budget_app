@@ -1,16 +1,20 @@
 import React, {useState} from 'react';
 import {Alert, Button, Form, Modal} from "react-bootstrap";
 import createEnvelope from "../utils/createEnvelope";
-import {NewEnvelope} from "../Interfaces/Envelope";
+import {Envelope} from "../Interfaces/Envelope";
+import updateEnvelope from "../utils/updateEnvelope";
+import {EnvelopesContext} from "./Envelopes";
 
 interface CreateEnvelopeModalProps {
     closeModal: Function;
-
+    envelope: Envelope
 }
-const CreateEnvelopeModal: React.FC<CreateEnvelopeModalProps> = (props) => {
+
+const EnvelopeModal: React.FC<CreateEnvelopeModalProps> = (props) => {
+    const {setEnvelopes} = React.useContext(EnvelopesContext);
     const [isProcessing, setIsProcessing] = useState<boolean>(false);
     const [error, setError] = useState<string>("");
-    const [newEnvelope, setNewEnvelope] = useState<NewEnvelope>({name: "", amount: 0});
+    const [envelope, setEnvelope] = useState<Envelope>(props.envelope);
 
     const handleCloseModal =() => {
         props.closeModal();
@@ -19,22 +23,30 @@ const CreateEnvelopeModal: React.FC<CreateEnvelopeModalProps> = (props) => {
     const handleSubmitModal = async () => {
         setError("");
         setIsProcessing(true);
-        const response = await createEnvelope(newEnvelope);
+        let response;
+        if (envelope.id) {
+            response = await updateEnvelope(envelope);
+        } else {
+            response = await createEnvelope(envelope);
+        }
         if (response && response >= 200 && response < 300) {
             setIsProcessing(false);
             handleCloseModal();
         } else {
             setIsProcessing(false);
-            setError("Failed to create envelope :(")
+            setError("Failed to create/update envelope :(")
         }
+        setEnvelopes((oldEnvelopes: Envelope[]) => {
+            const newEnvelopes = oldEnvelopes.filter((oldEnvelope) => oldEnvelope.id !== envelope.id);
+            return [...newEnvelopes, envelope];
+        })
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-          setNewEnvelope({
-            ...newEnvelope,
+          setEnvelope({
+            ...envelope,
             [e.target.name]: e.target.value
         });
-          console.log(newEnvelope)
     };
 
     return (
@@ -50,11 +62,23 @@ const CreateEnvelopeModal: React.FC<CreateEnvelopeModalProps> = (props) => {
                         <>
                             <Form.Group className="mb-3" controlId="new-envelope-name">
                                 <Form.Label>Name</Form.Label>
-                                <Form.Control type="text" placeholder="Enter name of savings envelope" name="name" onChange={handleChange} />
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Enter name of savings envelope"
+                                    name="name"
+                                    onChange={handleChange}
+                                    defaultValue={envelope.name}
+                                />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="new-envelope-amount">
                                 <Form.Label>Amount</Form.Label>
-                                <Form.Control type="number" placeholder="Enter amount" name="amount" onChange={handleChange} />
+                                <Form.Control
+                                    type="number"
+                                    placeholder="Enter amount"
+                                    name="amount"
+                                    onChange={handleChange}
+                                    defaultValue={envelope.amount}
+                                />
                             </Form.Group>
                         </>
                     ) : (
@@ -70,4 +94,4 @@ const CreateEnvelopeModal: React.FC<CreateEnvelopeModalProps> = (props) => {
       );
 };
 
-export default CreateEnvelopeModal;
+export default EnvelopeModal;

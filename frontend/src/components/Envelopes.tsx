@@ -1,15 +1,21 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, createContext} from 'react';
 import {Envelope} from "../Interfaces/Envelope";
 import getEnvelopes from "../utils/getEnvelopes";
 import {Button, Col, Container, Row} from "react-bootstrap";
-import CreateEnvelopeModal from "./CreateEnvelopeModal";
+import EnvelopeModal from "./EnvelopeModal";
 import EnvelopeChip from "./EnvelopeChip";
 
-
-interface EnvelopesProps {
-
+interface EnvelopesContextType {
+    envelopes: Envelope[];
+    setEnvelopes: Function;
 }
-const Envelopes: React.FC<EnvelopesProps> = (props) => {
+export const EnvelopesContext = createContext<EnvelopesContextType>({
+    envelopes: [],
+    setEnvelopes: () => {}
+});
+
+
+const Envelopes: React.FC = () => {
     const [envelopes, setEnvelopes] = useState<Envelope[]>([]);
     const [isCreateEnvelopeVisible, setCreateEnvelopModalVisible] = useState<boolean>(false);
 
@@ -25,9 +31,8 @@ const Envelopes: React.FC<EnvelopesProps> = (props) => {
         setCreateEnvelopModalVisible(!isCreateEnvelopeVisible);
     }
 
-
     return (
-        <>
+        <EnvelopesContext.Provider value={{envelopes, setEnvelopes}}>
             <Container>
                 <Row>
                     <header>
@@ -50,9 +55,9 @@ const Envelopes: React.FC<EnvelopesProps> = (props) => {
                 </Row>
             </Container>
             {isCreateEnvelopeVisible && (
-                <CreateEnvelopeModal closeModal={toggleEnvelopModal}/>
+                <EnvelopeModal closeModal={toggleEnvelopModal} envelope={{} as Envelope}/>
             )}
-        </>
+        </EnvelopesContext.Provider>
       );
 };
 
