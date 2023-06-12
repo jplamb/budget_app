@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from proj.transactions.models import Transaction, Envelope
+from proj.transactions.models import Transaction, Envelope, Category, Month
 
 
 class TransactionSerializer(serializers.ModelSerializer):
@@ -19,3 +19,15 @@ class EnvelopeSerializer(serializers.ModelSerializer):
         model = Envelope
         fields = ('id', 'name', 'amount', 'last_updated')
         read_only_fields = ('id', 'last_updated')
+
+
+class MonthSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Month
+        fields = ('id', 'name', 'year')
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ('id', 'name', 'month', 'amount')

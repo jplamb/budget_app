@@ -5,8 +5,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .utils import get_transaction_data, process_transactions
-from.serializers import TransactionSerializer, EnvelopeSerializer
-from proj.transactions.models import Transaction, Envelope
+from.serializers import TransactionSerializer, EnvelopeSerializer, CategorySerializer
+from proj.transactions.models import Transaction, Envelope, Month, Category
 
 
 LOG_LEVEL = logging.DEBUG
@@ -20,8 +20,8 @@ logging.basicConfig(
 
 
 class TransactionsView(APIView):
-    def get(self, request, month, *args, **kwargs):
-        transaction_data = get_transaction_data(month)
+    def get(self, request, month, year, *args, **kwargs):
+        transaction_data = get_transaction_data(month, year)
         serializer = TransactionSerializer(transaction_data, many=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -47,7 +47,7 @@ class UpdateTransactionView(APIView):
         budget_month = request.query_params.get('budgetMonth')
         mapped_budget_month = None
         if budget_month:
-            mapped_budget_month = Transaction.BudgetMonthChoices[budget_month.upper()]
+            mapped_budget_month = Month.MonthChoices[budget_month.upper()]
 
         if not category and not budget_month:
             return Response(status=status.HTTP_400_BAD_REQUEST)
@@ -70,8 +70,22 @@ class EnvelopeViewSet(viewsets.ModelViewSet):
     queryset = Envelope.objects.all()
     serializer_class = EnvelopeSerializer
 
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+    def list(self, request, *args, **kwargs):
+        year = request.query_params.get('year')
+        month = request.query_params.get('month')
+        if not year or not month:
+            return Response(status=status.HTTP_400_BAD_REQUEST, data={"error": "Must provide year and month."})
+        month_choice = Month.month_num_to_choice[int(month)]
+        budget_month = Month.objects.get(name=month_choice, year=year)
+        category_data = Category.objects.filter(month=budget_month)
+        serializer = CategorySerializer(category_data, many=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 def index(request):

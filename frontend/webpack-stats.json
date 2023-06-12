@@ -61,6 +61,16 @@
       "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.082e1f8554a518ab4bc5.hot-update.json",
       "publicPath": "http://localhost:8080/static/frontend/main.082e1f8554a518ab4bc5.hot-update.json"
     },
+    "main.0bd16517c0b969f0d8e1.hot-update.js": {
+      "name": "main.0bd16517c0b969f0d8e1.hot-update.js",
+      "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.0bd16517c0b969f0d8e1.hot-update.js",
+      "publicPath": "http://localhost:8080/static/frontend/main.0bd16517c0b969f0d8e1.hot-update.js"
+    },
+    "main.0bd16517c0b969f0d8e1.hot-update.json": {
+      "name": "main.0bd16517c0b969f0d8e1.hot-update.json",
+      "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.0bd16517c0b969f0d8e1.hot-update.json",
+      "publicPath": "http://localhost:8080/static/frontend/main.0bd16517c0b969f0d8e1.hot-update.json"
+    },
     "main.0c1c98f1f08d7d5fa24e.hot-update.js": {
       "name": "main.0c1c98f1f08d7d5fa24e.hot-update.js",
       "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.0c1c98f1f08d7d5fa24e.hot-update.js",
@@ -210,6 +220,16 @@
       "name": "main.2151eb7d9ab51bd68022.hot-update.json",
       "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.2151eb7d9ab51bd68022.hot-update.json",
       "publicPath": "http://localhost:8080/static/frontend/main.2151eb7d9ab51bd68022.hot-update.json"
+    },
+    "main.216673343633efe4ec71.hot-update.js": {
+      "name": "main.216673343633efe4ec71.hot-update.js",
+      "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.216673343633efe4ec71.hot-update.js",
+      "publicPath": "http://localhost:8080/static/frontend/main.216673343633efe4ec71.hot-update.js"
+    },
+    "main.216673343633efe4ec71.hot-update.json": {
+      "name": "main.216673343633efe4ec71.hot-update.json",
+      "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.216673343633efe4ec71.hot-update.json",
+      "publicPath": "http://localhost:8080/static/frontend/main.216673343633efe4ec71.hot-update.json"
     },
     "main.26e2cbd7242fce078751.hot-update.js": {
       "name": "main.26e2cbd7242fce078751.hot-update.js",
@@ -411,6 +431,16 @@
       "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.415054fe293c9ab95515.hot-update.json",
       "publicPath": "http://localhost:8080/static/frontend/main.415054fe293c9ab95515.hot-update.json"
     },
+    "main.41b8b0db9d8e45ed9020.hot-update.js": {
+      "name": "main.41b8b0db9d8e45ed9020.hot-update.js",
+      "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.41b8b0db9d8e45ed9020.hot-update.js",
+      "publicPath": "http://localhost:8080/static/frontend/main.41b8b0db9d8e45ed9020.hot-update.js"
+    },
+    "main.41b8b0db9d8e45ed9020.hot-update.json": {
+      "name": "main.41b8b0db9d8e45ed9020.hot-update.json",
+      "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.41b8b0db9d8e45ed9020.hot-update.json",
+      "publicPath": "http://localhost:8080/static/frontend/main.41b8b0db9d8e45ed9020.hot-update.json"
+    },
     "main.4426cf0a96610b70f438.hot-update.js": {
       "name": "main.4426cf0a96610b70f438.hot-update.js",
       "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.4426cf0a96610b70f438.hot-update.js",
@@ -571,6 +601,16 @@
       "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.5ba1d0a5f041432e4ee2.hot-update.json",
       "publicPath": "http://localhost:8080/static/frontend/main.5ba1d0a5f041432e4ee2.hot-update.json"
     },
+    "main.5cad48e3adc8ecee3cae.hot-update.js": {
+      "name": "main.5cad48e3adc8ecee3cae.hot-update.js",
+      "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.5cad48e3adc8ecee3cae.hot-update.js",
+      "publicPath": "http://localhost:8080/static/frontend/main.5cad48e3adc8ecee3cae.hot-update.js"
+    },
+    "main.5cad48e3adc8ecee3cae.hot-update.json": {
+      "name": "main.5cad48e3adc8ecee3cae.hot-update.json",
+      "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.5cad48e3adc8ecee3cae.hot-update.json",
+      "publicPath": "http://localhost:8080/static/frontend/main.5cad48e3adc8ecee3cae.hot-update.json"
+    },
     "main.5cbe6a1640671d6b4423.hot-update.js": {
       "name": "main.5cbe6a1640671d6b4423.hot-update.js",
       "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.5cbe6a1640671d6b4423.hot-update.js",
@@ -701,6 +741,16 @@
       "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.6bd0df512af282565aac.hot-update.json",
       "publicPath": "http://localhost:8080/static/frontend/main.6bd0df512af282565aac.hot-update.json"
     },
+    "main.6c33dade079c33cfc154.hot-update.js": {
+      "name": "main.6c33dade079c33cfc154.hot-update.js",
+      "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.6c33dade079c33cfc154.hot-update.js",
+      "publicPath": "http://localhost:8080/static/frontend/main.6c33dade079c33cfc154.hot-update.js"
+    },
+    "main.6c33dade079c33cfc154.hot-update.json": {
+      "name": "main.6c33dade079c33cfc154.hot-update.json",
+      "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.6c33dade079c33cfc154.hot-update.json",
+      "publicPath": "http://localhost:8080/static/frontend/main.6c33dade079c33cfc154.hot-update.json"
+    },
     "main.6d3fe4fb2987d40d40f3.hot-update.js": {
       "name": "main.6d3fe4fb2987d40d40f3.hot-update.js",
       "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.6d3fe4fb2987d40d40f3.hot-update.js",
@@ -800,6 +850,36 @@
       "name": "main.7fb118e064d21f1f8170.hot-update.json",
       "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.7fb118e064d21f1f8170.hot-update.json",
       "publicPath": "http://localhost:8080/static/frontend/main.7fb118e064d21f1f8170.hot-update.json"
+    },
+    "main.81e1ef6aeb9be03bdb64.hot-update.js": {
+      "name": "main.81e1ef6aeb9be03bdb64.hot-update.js",
+      "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.81e1ef6aeb9be03bdb64.hot-update.js",
+      "publicPath": "http://localhost:8080/static/frontend/main.81e1ef6aeb9be03bdb64.hot-update.js"
+    },
+    "main.81e1ef6aeb9be03bdb64.hot-update.json": {
+      "name": "main.81e1ef6aeb9be03bdb64.hot-update.json",
+      "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.81e1ef6aeb9be03bdb64.hot-update.json",
+      "publicPath": "http://localhost:8080/static/frontend/main.81e1ef6aeb9be03bdb64.hot-update.json"
+    },
+    "main.850779061718ce25e553.hot-update.js": {
+      "name": "main.850779061718ce25e553.hot-update.js",
+      "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.850779061718ce25e553.hot-update.js",
+      "publicPath": "http://localhost:8080/static/frontend/main.850779061718ce25e553.hot-update.js"
+    },
+    "main.850779061718ce25e553.hot-update.json": {
+      "name": "main.850779061718ce25e553.hot-update.json",
+      "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.850779061718ce25e553.hot-update.json",
+      "publicPath": "http://localhost:8080/static/frontend/main.850779061718ce25e553.hot-update.json"
+    },
+    "main.8ad49b7c9005be47ed78.hot-update.js": {
+      "name": "main.8ad49b7c9005be47ed78.hot-update.js",
+      "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.8ad49b7c9005be47ed78.hot-update.js",
+      "publicPath": "http://localhost:8080/static/frontend/main.8ad49b7c9005be47ed78.hot-update.js"
+    },
+    "main.8ad49b7c9005be47ed78.hot-update.json": {
+      "name": "main.8ad49b7c9005be47ed78.hot-update.json",
+      "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.8ad49b7c9005be47ed78.hot-update.json",
+      "publicPath": "http://localhost:8080/static/frontend/main.8ad49b7c9005be47ed78.hot-update.json"
     },
     "main.8b812695159ed50f8dee.hot-update.js": {
       "name": "main.8b812695159ed50f8dee.hot-update.js",
@@ -1041,6 +1121,26 @@
       "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.d0e1bf98b6f854c71505.hot-update.json",
       "publicPath": "http://localhost:8080/static/frontend/main.d0e1bf98b6f854c71505.hot-update.json"
     },
+    "main.d1cdf6194f36d2b648a6.hot-update.js": {
+      "name": "main.d1cdf6194f36d2b648a6.hot-update.js",
+      "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.d1cdf6194f36d2b648a6.hot-update.js",
+      "publicPath": "http://localhost:8080/static/frontend/main.d1cdf6194f36d2b648a6.hot-update.js"
+    },
+    "main.d1cdf6194f36d2b648a6.hot-update.json": {
+      "name": "main.d1cdf6194f36d2b648a6.hot-update.json",
+      "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.d1cdf6194f36d2b648a6.hot-update.json",
+      "publicPath": "http://localhost:8080/static/frontend/main.d1cdf6194f36d2b648a6.hot-update.json"
+    },
+    "main.d2bc0bb99e0f9d643129.hot-update.js": {
+      "name": "main.d2bc0bb99e0f9d643129.hot-update.js",
+      "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.d2bc0bb99e0f9d643129.hot-update.js",
+      "publicPath": "http://localhost:8080/static/frontend/main.d2bc0bb99e0f9d643129.hot-update.js"
+    },
+    "main.d2bc0bb99e0f9d643129.hot-update.json": {
+      "name": "main.d2bc0bb99e0f9d643129.hot-update.json",
+      "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.d2bc0bb99e0f9d643129.hot-update.json",
+      "publicPath": "http://localhost:8080/static/frontend/main.d2bc0bb99e0f9d643129.hot-update.json"
+    },
     "main.d3b4d845dbb413819179.hot-update.js": {
       "name": "main.d3b4d845dbb413819179.hot-update.js",
       "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.d3b4d845dbb413819179.hot-update.js",
@@ -1241,6 +1341,16 @@
       "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.ed07ebe06b419f3dfd07.hot-update.json",
       "publicPath": "http://localhost:8080/static/frontend/main.ed07ebe06b419f3dfd07.hot-update.json"
     },
+    "main.ed16b095a2d2e7913486.hot-update.js": {
+      "name": "main.ed16b095a2d2e7913486.hot-update.js",
+      "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.ed16b095a2d2e7913486.hot-update.js",
+      "publicPath": "http://localhost:8080/static/frontend/main.ed16b095a2d2e7913486.hot-update.js"
+    },
+    "main.ed16b095a2d2e7913486.hot-update.json": {
+      "name": "main.ed16b095a2d2e7913486.hot-update.json",
+      "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.ed16b095a2d2e7913486.hot-update.json",
+      "publicPath": "http://localhost:8080/static/frontend/main.ed16b095a2d2e7913486.hot-update.json"
+    },
     "main.ee88fd4437ad08da99c7.hot-update.js": {
       "name": "main.ee88fd4437ad08da99c7.hot-update.js",
       "path": "/Users/johnlamb/projects/budget_app/frontend/webpack/public/frontend/main.ee88fd4437ad08da99c7.hot-update.js",
@@ -1420,10 +1530,10 @@
   "chunks": {
     "main": [
       "bundle.js",
-      "main.d84e43c0e95fe6a49d7b.hot-update.js"
+      "main.41b8b0db9d8e45ed9020.hot-update.js"
     ]
   },
   "publicPath": "http://localhost:8080/static/frontend/",
   "error": "Error",
-  "message": "[tsl] ERROR in /Users/johnlamb/projects/budget_app/frontend/src/components/BonusDistributionCalculator.tsx(32,13)\n      TS2322: Type 'string' is not assignable to type 'number'."
+  "message": "[tsl] ERROR in /Users/johnlamb/projects/budget_app/frontend/src/components/Budget.tsx(23,9)\n      TS2304: Cannot find name 'getCategoriesForMonth'."
 }

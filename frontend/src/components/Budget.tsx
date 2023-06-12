@@ -1,24 +1,38 @@
 import React, {useEffect, useState} from 'react';
-import {BudgetCategories, MonthConfig} from "../utils/config";
 import BudgetRow from "./BudgetRow";
-import { Container, Row, Table} from "react-bootstrap";
+import {Button, Container, Row, Table} from "react-bootstrap";
 import getTransactionsForMonth from "../utils/getTransactionsForMonth";
 import {Transaction} from "../Interfaces/Transaction";
 import MonthSelector from "./MonthSelector";
 import Transactions from "./Transactions";
+import {Category} from "../Interfaces/Category";
+import getCategoriesForMonth from "../utils/getCategoriesForMonth";
 
-const Budget: React.FC = () => {
+interface BudgetProps {
+    isEditable?: boolean;
+}
+
+const Budget: React.FC<BudgetProps> = ({isEditable}) => {
     const [transactions, setTransactions] = useState<Transaction[]>([]);
     const [categorySums, setCategorySums] = useState<{[category: string]: number}>({});
     const [txChanged, setTXChanged] = useState<boolean>(false);
-    const [selectedMonth, setSelectedMonth] = useState<number>(new Date().getMonth());
+    const [selectedDate, setSelectedDate] = useState<any>({month: new Date().getMonth(), year: new Date().getFullYear()});
+    const [categories, setCategories] = useState<Category[]>([]);
+    const [showNewCategoryModal, toggleNewCategoryModal] = useState<boolean>(false);
+
+    useEffect(() => {
+        getCategoriesForMonth(Number(selectedDate.month) + 1, selectedDate.year).then((data) => {
+            setCategories(data);
+        });
+    }, [selectedDate.month, selectedDate.year])
 
     useEffect( () => {
-        getTransactionsForMonth(MonthConfig[selectedMonth].month).then((data) => {
+        if (isEditable) return;
+        getTransactionsForMonth(Number(selectedDate.month) + 1, selectedDate.year).then((data) => {
             setTransactions(data);
         });
 
-    }, [txChanged, selectedMonth]);
+    }, [txChanged, selectedDate.month, selectedDate.year]);
 
     useEffect(() => {
         console.log(transactions)
@@ -38,7 +52,7 @@ const Budget: React.FC = () => {
     return (
         <Container className="Budget">
             <Row>
-                <MonthSelector selectedMonth={selectedMonth} setSelectedMonth={setSelectedMonth} />
+                <MonthSelector selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
             </Row>
             <Row xs={2} md={4} lg={6}>
                 <Table className="BudgetTable table table-striped" size="sm" style={{ maxWidth: "500px"}}>
@@ -59,20 +73,25 @@ const Budget: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {Object.values(BudgetCategories).map((category, iter) => (
+                        {categories.map((category, iter) => (
                             <BudgetRow
                                 categoryName={category.name}
-                                categoryBudget={category.budgetedAmount}
+                                categoryBudget={category.amount}
                                 categoryActual={-1 * categorySums[category.name] || 0}
                                 isTableHeader={['Other', 'Income'].includes(category.name)}
                                 key={`${category}-${iter}`}
+                                isEditable={isEditable}
                             />
                         ))}
                     </tbody>
                 </Table>
             </Row>
 
-            <Transactions transactions={transactions} txChanged={txChanged} setTXChanged={setTXChanged} />
+            {isEditable ? (
+                <Button variant="primary" onClick={() => toggleNewCategoryModal(!showNewCategoryModal)}>Add Category</Button>
+                ) : (
+                    <Transactions transactions={transactions} txChanged={txChanged} setTXChanged={setTXChanged} />
+            )}
         </Container>
     );
 };

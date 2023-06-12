@@ -14,6 +14,7 @@ const FinanceApp: React.FC = () => {
                 <Route index element={<Budget />} />
                 <Route path="envelopes" element={<Envelopes />} />
                 <Route path="calculators" element={<Calculators />} />
+                <Route path="budget" element={<Budget isEditable={true} />} />
                 {/* Using path="*"" means "match anything", so this route
                 acts like a catch-all for URLs that we don't have explicit
                 routes for. */}

@@ -1,6 +1,25 @@
 import React from "react";
 import {Link, Outlet} from "react-router-dom";
 
+const NavItems = [
+    {
+        name: "Home",
+        path: '/'
+    },
+    {
+        name: "Envelopes",
+        path: '/envelops'
+    },
+    {
+        name: "Calculators",
+        path: '/calculators'
+    },
+    {
+        name: "Budget",
+        path: '/budget'
+    }
+];
+
 const NavLayout: React.FC = () => {
     return (
         <div>
@@ -13,15 +32,12 @@ const NavLayout: React.FC = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarColor01">
                         <ul className="navbar-nav me-auto">
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/">Home</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/envelopes">Envelopes</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/calculators">Calculators</Link>
-                            </li>
+                            {NavItems.map((item, index) => (
+                                <li className="nav-item" key={`nav-item-${index}`}>
+                                    <Link className="nav-link" to={item.path}>{item.name}</Link>
+                                </li>
+                                )
+                            )}
                         </ul>
                     </div>
                 </div>

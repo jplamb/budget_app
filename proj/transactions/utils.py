@@ -5,7 +5,7 @@ from datetime import datetime
 import csv
 from django.utils.timezone import make_aware
 
-from proj.transactions.models import Transaction
+from proj.transactions.models import Transaction, Month
 from proj.transactions.tx_to_category import TX_TO_CATEGORY
 
 LOG_LEVEL = logging.DEBUG
@@ -20,8 +20,9 @@ logging.basicConfig(
 CSV_TX = namedtuple('CSV_TX', ['TX_DATE', 'POST_DATE', 'DESCRIPTION', 'CATEGORY', 'TYPE', 'AMOUNT', 'MEMO', 'SOURCE'])
 
 
-def get_transaction_data(month=None):
-    budget_month = Transaction.BudgetMonthChoices[month.upper()]
+def get_transaction_data(month, year):
+    month_choice = Month.month_num_to_choice[int(month)]
+    budget_month = Month.objects.get(name=month_choice, year=year)
     return Transaction.objects.filter(budget_month=budget_month)
 
 
@@ -76,7 +77,7 @@ def process_transactions():
         elif "capitalone" in tx.SOURCE.lower():
             tx_source = Transaction.TXSources.CAPITAL_ONE
         raw_month = tx_post_date.strftime('%B').upper()
-        budget_month = getattr(Transaction.BudgetMonthChoices, raw_month)
+        budget_month = getattr(Month.MonthChoices, raw_month)
 
         try:
             # There is an edge case where a transactions for the same amount to the same merchant on the same date are

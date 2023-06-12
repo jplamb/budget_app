@@ -1,5 +1,8 @@
 import React from 'react';
 import {BudgetCategories} from "../utils/config";
+import {Button} from "react-bootstrap";
+import {RiPencilFill} from "react-icons/ri";
+import {GiTrashCan} from "react-icons/gi";
 
 
 interface BudgetRowProps {
@@ -7,8 +10,9 @@ interface BudgetRowProps {
     categoryBudget: number;
     categoryActual: number;
     isTableHeader: boolean;
+    isEditable?: boolean;
 }
-const BudgetRow: React.FC<BudgetRowProps> = ({ categoryName, categoryBudget , categoryActual, isTableHeader}) => {
+const BudgetRow: React.FC<BudgetRowProps> = ({ categoryName, categoryBudget , categoryActual, isTableHeader, isEditable}) => {
     let actualAmount;
     if (categoryName === BudgetCategories.Recurring.name) {
         actualAmount = BudgetCategories.Recurring.budgetedAmount;
@@ -23,6 +27,14 @@ const BudgetRow: React.FC<BudgetRowProps> = ({ categoryName, categoryBudget , ca
     const formatForNegative = (amount: number) => {
         return amount < 0 ? `-$${Math.abs(amount).toFixed(0)}` : `$${amount.toFixed(0)}`;
     }
+
+    const updateCategoryAmount = () => {
+        console.log("updateCategoryAmount");
+    };
+
+    const deleteCategory = () => {
+        console.log("deleteCategory");
+    };
 
     return (
         <tr className={`BudgetRow ${isTableHeader ? 'table-primary' : 'table-dark'}`}>
@@ -55,6 +67,28 @@ const BudgetRow: React.FC<BudgetRowProps> = ({ categoryName, categoryBudget , ca
                     <td className="categorydiffAmount text-center">
                         {formatForNegative(categoryBudget - actualAmount)}
                     </td>
+                    {isEditable && (
+                        <>
+                            <td className="categoryEdit">
+                                <Button
+                                    variant="primary"
+                                    size="sm"
+                                    onClick={() => {updateCategoryAmount}}
+                                >
+                                    <RiPencilFill />
+                                </Button>
+                            </td>
+                            <td className="categoryEdit">
+                                <Button
+                                    variant="primary"
+                                    size="sm"
+                                    onClick={() => {deleteCategory}}
+                                >
+                                    <GiTrashCan />
+                                </Button>
+                            </td>
+                        </>
+                    )}
                 </>
             )}
         </tr>
