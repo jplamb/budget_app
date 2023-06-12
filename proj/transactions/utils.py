@@ -75,7 +75,7 @@ def process_transactions():
             tx_source = Transaction.TXSources.CHASE
         elif "capitalone" in tx.SOURCE.lower():
             tx_source = Transaction.TXSources.CAPITAL_ONE
-        raw_month = obj.date.strftime('%B').upper()
+        raw_month = tx_post_date.strftime('%B').upper()
         budget_month = getattr(Transaction.BudgetMonthChoices, raw_month)
 
         try:

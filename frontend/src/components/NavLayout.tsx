@@ -19,6 +19,9 @@ const NavLayout: React.FC = () => {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/envelopes">Envelopes</Link>
                             </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/calculators">Calculators</Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
