@@ -5,7 +5,7 @@ from datetime import datetime
 import csv
 from django.utils.timezone import make_aware
 
-from proj.transactions.models import Transaction, Month
+from proj.transactions.models import Transaction, Month, Category
 from proj.transactions.tx_to_category import TX_TO_CATEGORY
 
 LOG_LEVEL = logging.DEBUG
@@ -121,6 +121,7 @@ def convert_date_string(date_string):
 
     return date
 
+
 def get_category(payee):
     category = None
     for agent, cat in TX_TO_CATEGORY.items():
@@ -128,3 +129,25 @@ def get_category(payee):
             category = cat
 
     return category or Transaction.TXCategories.OTHER
+
+
+def copy_categories(from_month, from_year, to_month, to_year):
+    from_month_choice = Month.month_num_to_choice[int(from_month)]
+    from_budget_month = Month.objects.get(name=from_month_choice, year=from_year)
+    to_month_choice = Month.month_num_to_choice[int(to_month)]
+    to_budget_month, _ = Month.objects.get_or_create(name=to_month_choice, year=to_year)
+
+    from_categories = Category.objects.filter(month=from_budget_month)
+
+    new_categories = []
+    for category in from_categories:
+        new_category, _ = Category.objects.get_or_create(
+            name=category.name,
+            month=to_budget_month,
+            defaults={
+                'amount': category.amount,
+            }
+        )
+        new_categories.append(new_category)
+
+    return new_categories

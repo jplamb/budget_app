@@ -10,12 +10,12 @@ const MonthSelector: React.FC<MonthSelectorProps> = (props) => {
         <Tabs
             defaultActiveKey="January"
             id="tab-months"
-            activeKey={props.selectedDate}
+            activeKey={props.selectedDate.month}
             onSelect={(k) => props.setSelectedDate({month: k, year: new Date().getFullYear()})} // TODO: Add support for other years
-            className="mb-3"
+            className="nav nav-tabs mb-3"
         >
             {MonthConfig.map((monthObj, index) => (
-                <Tab key={`month-${monthObj.month}`} eventKey={monthObj.monthNumber} title={monthObj.month} />
+                <Tab tabClassName="tab-item" key={`month-${monthObj.month}`} eventKey={monthObj.monthNumber} title={monthObj.month} />
             ))}
     </Tabs>
   );

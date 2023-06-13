@@ -4,7 +4,7 @@ from rest_framework import status, viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .utils import get_transaction_data, process_transactions
+from .utils import get_transaction_data, process_transactions, copy_categories
 from.serializers import TransactionSerializer, EnvelopeSerializer, CategorySerializer
 from proj.transactions.models import Transaction, Envelope, Month, Category
 
@@ -75,15 +75,45 @@ class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
     def list(self, request, *args, **kwargs):
         year = request.query_params.get('year')
         month = request.query_params.get('month')
         if not year or not month:
             return Response(status=status.HTTP_400_BAD_REQUEST, data={"error": "Must provide year and month."})
-        month_choice = Month.month_num_to_choice[int(month)]
-        budget_month = Month.objects.get(name=month_choice, year=year)
-        category_data = Category.objects.filter(month=budget_month)
-        serializer = CategorySerializer(category_data, many=True)
+
+        try:
+            month_choice = Month.month_num_to_choice[int(month)]
+            budget_month = Month.objects.get(name=month_choice, year=year)
+            category_data = Category.objects.filter(month=budget_month)
+            serializer = CategorySerializer(category_data, many=True)
+        except Month.DoesNotExist:
+            return Response(status=status.HTTP_400_BAD_REQUEST, data={"error": "Invalid year and month."})
+        except Exception as err:
+            logging.error(f"Encountered an error while trying to get categories.\n{err}")
+            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class CopyMonthCategoriesView(APIView):
+    def post(self, request, *args, **kwargs):
+        from_year = request.data.get('fromYear')
+        from_month = request.data.get('fromMonth')
+        to_year = request.data.get('toYear')
+        to_month = request.data.get('toMonth')
+
+        if not from_year or not from_month or not to_year or not to_month:
+            return Response(status=status.HTTP_400_BAD_REQUEST, data={"error": "Must provide all years and months."})
+
+        try:
+            new_categories = copy_categories(from_month, from_year, to_month, to_year)
+            serializer = CategorySerializer(new_categories, many=True)
+        except Exception as err:
+            logging.error(f"Encountered an error while trying to copy categories.\n{err}")
+            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 

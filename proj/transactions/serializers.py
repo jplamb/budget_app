@@ -28,6 +28,17 @@ class MonthSerializer(serializers.ModelSerializer):
 
 
 class CategorySerializer(serializers.ModelSerializer):
+    raw_month = serializers.IntegerField(write_only=True)
+    year = serializers.IntegerField(write_only=True)
     class Meta:
         model = Category
-        fields = ('id', 'name', 'month', 'amount')
+        fields = ('id', 'name', 'month', 'amount', 'raw_month', 'year')
+        read_only_fields = ('id', 'month')
+
+    def create(self, validated_data):
+        raw_month = validated_data.pop('raw_month')
+        year = validated_data.pop('year')
+        month_choice = Month.month_num_to_choice[int(raw_month)]
+        budget_month = Month.objects.get(name=month_choice, year=year)
+
+        return Category.objects.create(month=budget_month, **validated_data)

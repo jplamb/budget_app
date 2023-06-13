@@ -3,96 +3,105 @@ import {BudgetCategories} from "../utils/config";
 import {Button} from "react-bootstrap";
 import {RiPencilFill} from "react-icons/ri";
 import {GiTrashCan} from "react-icons/gi";
+import DeleteModal from "./DeleteModal";
+import {Category} from "../Interfaces/Category";
+import deleteCategory from "../utils/deleteCategory";
+import CategoryModal from "./CategoryModal";
+import {CategoriesContext} from "./Budget";
 
 
 interface BudgetRowProps {
-    categoryName: string;
-    categoryBudget: number;
+    category: Category;
     categoryActual: number;
     isTableHeader: boolean;
     isEditable?: boolean;
 }
-const BudgetRow: React.FC<BudgetRowProps> = ({ categoryName, categoryBudget , categoryActual, isTableHeader, isEditable}) => {
+const BudgetRow: React.FC<BudgetRowProps> = ({ category , categoryActual, isTableHeader, isEditable}) => {
+    const {setCategories} = React.useContext(CategoriesContext);
+
+    const [toggleDeleteModal, setToggleDeleteModal] = React.useState<boolean>(false);
+    const [toggleCategoryModal, setToggleCategoryModal] = React.useState<boolean>(false);
+
     let actualAmount;
-    if (categoryName === BudgetCategories.Recurring.name) {
+    if (category.name === BudgetCategories.Recurring.name) {
         actualAmount = BudgetCategories.Recurring.budgetedAmount;
-    } else if (categoryName === BudgetCategories.Income.name) {
+    } else if (category.name === BudgetCategories.Income.name) {
         actualAmount = -1 * categoryActual;
 
     } else {
         actualAmount = categoryActual;
     }
-    console.log(categoryName, actualAmount);
+    console.log(category.name, actualAmount, category.amount);
 
     const formatForNegative = (amount: number) => {
         return amount < 0 ? `-$${Math.abs(amount).toFixed(0)}` : `$${amount.toFixed(0)}`;
     }
 
-    const updateCategoryAmount = () => {
-        console.log("updateCategoryAmount");
-    };
-
-    const deleteCategory = () => {
-        console.log("deleteCategory");
-    };
-
     return (
-        <tr className={`BudgetRow ${isTableHeader ? 'table-primary' : 'table-dark'}`}>
-            {isTableHeader ? (
-                <>
-                    <th className="categoryName header">
-                        {categoryName}
-                    </th>
-                    <th className="categoryBudgetedAmount header text-center">
-                        ${categoryBudget.toFixed(0)}
-                    </th>
-                    <th className="categoryActualAmount header text-center">
-                        {formatForNegative(actualAmount)}
-                    </th>
-                    <th className="categoryDiffAmount header text-center">
-                        {formatForNegative(categoryBudget - actualAmount)}
-                    </th>
-                </>
-            ) : (
-                <>
-                    <th className="categoryName">
-                        {categoryName}
-                    </th>
-                    <td className="categoryBudgetedAmount text-center">
-                        ${categoryBudget.toFixed(0)}
-                    </td>
-                    <td className="categoryActualAmount text-center">
-                        {formatForNegative(actualAmount)}
-                    </td>
-                    <td className="categorydiffAmount text-center">
-                        {formatForNegative(categoryBudget - actualAmount)}
-                    </td>
-                    {isEditable && (
-                        <>
-                            <td className="categoryEdit">
-                                <Button
-                                    variant="primary"
-                                    size="sm"
-                                    onClick={() => {updateCategoryAmount}}
-                                >
-                                    <RiPencilFill />
-                                </Button>
-                            </td>
-                            <td className="categoryEdit">
-                                <Button
-                                    variant="primary"
-                                    size="sm"
-                                    onClick={() => {deleteCategory}}
-                                >
-                                    <GiTrashCan />
-                                </Button>
-                            </td>
-                        </>
-                    )}
-                </>
+        <>
+            <tr className={`BudgetRow ${isTableHeader ? 'table-primary' : 'table-dark'}`}>
+                {isTableHeader ? (
+                    <>
+                        <th className="categoryName header">
+                            {category.name}
+                        </th>
+                        <th className="categoryBudgetedAmount header text-center">
+                            ${category.amount.toFixed(0)}
+                        </th>
+                        <th className="categoryActualAmount header text-center">
+                            {formatForNegative(actualAmount)}
+                        </th>
+                        <th className="categoryDiffAmount header text-center">
+                            {formatForNegative(category.amount - actualAmount)}
+                        </th>
+                    </>
+                ) : (
+                    <>
+                        <th className="categoryName">
+                            {category.name}
+                        </th>
+                        <td className="categoryBudgetedAmount text-center">
+                            ${category.amount.toFixed(0)}
+                        </td>
+                        <td className="categoryActualAmount text-center">
+                            {formatForNegative(actualAmount)}
+                        </td>
+                        <td className="categorydiffAmount text-center">
+                            {formatForNegative(category.amount - actualAmount)}
+                        </td>
+                        {isEditable && (
+                            <>
+                                <td className="categoryEdit">
+                                    <Button
+                                        variant="primary"
+                                        size="sm"
+                                        onClick={() => {setToggleCategoryModal(!toggleCategoryModal)}}
+                                    >
+                                        <RiPencilFill />
+                                    </Button>
+                                </td>
+                                <td className="categoryEdit">
+                                    <Button
+                                        variant="primary"
+                                        size="sm"
+                                        onClick={() => {setToggleDeleteModal(!toggleDeleteModal)}}
+                                    >
+                                        <GiTrashCan />
+                                    </Button>
+                                </td>
+                            </>
+                        )}
+                    </>
+                )}
+            </tr>
+            {toggleDeleteModal && (
+                <DeleteModal closeModal={() => setToggleDeleteModal(!toggleDeleteModal)} item={category} deleteItem={deleteCategory} updateItems={setCategories} />
             )}
-        </tr>
-      );
+            {toggleCategoryModal && (
+                <CategoryModal closeModal={() => setToggleCategoryModal(!toggleCategoryModal)} category={category} />
+            )}
+        </>
+    );
 };
 
 export default BudgetRow;
