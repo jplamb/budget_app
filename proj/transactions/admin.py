@@ -5,8 +5,9 @@ from .models import Transaction, Category, Month
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
     ordering = ["budget_month", "date"]
-    search_fields = ["payee", "category", "source", "budget_month", "source"]
+    search_fields = ["payee", "category", "source", "source"]
     list_display = ["budget_month", "payee", "amount", "category", "source", "date"]
+    list_filter = ["budget_month", "category", "source"]
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):

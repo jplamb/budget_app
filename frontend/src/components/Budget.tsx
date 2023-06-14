@@ -34,7 +34,25 @@ const Budget: React.FC<BudgetProps> = ({isEditable}) => {
 
     useEffect(() => {
         getCategoriesForMonth(Number(selectedDate.month) + 1, selectedDate.year).then((data) => {
-            setCategories(data);
+            let sortedData: Category[] = [];
+            let income: Category | null = null;
+            let other: Category | null = null;
+            let expenses = 0;
+            data.forEach((category) => {
+                if (category.name === "Income") {
+                    income = category;
+                    sortedData.splice(0,0, income);
+                } else if (category.name === "Other") {
+                    other = category;
+                } else {
+                    sortedData.push(category);
+                    expenses += category.amount;
+                }
+            });
+            // @ts-ignore
+            other.amount = (income ? income?.amount : 0) - expenses;
+            other && sortedData.push(other);
+            setCategories(sortedData);
         });
     }, [selectedDate.month, selectedDate.year, showCopyLastMonthsCategories])
 
@@ -77,12 +95,16 @@ const Budget: React.FC<BudgetProps> = ({isEditable}) => {
                                 <th className="text-center">
                                     Budgeted
                                 </th>
-                                <th className="text-center">
-                                    Actual
-                                </th>
-                                <th className="text-center">
-                                    Difference
-                                </th>
+                                {!isEditable && (
+                                    <>
+                                        <th className="text-center">
+                                            Actual
+                                        </th>
+                                        <th className="text-center">
+                                            Difference
+                                        </th>
+                                    </>
+                                )}
                             </tr>
                         </thead>
                         <tbody>
@@ -101,7 +123,7 @@ const Budget: React.FC<BudgetProps> = ({isEditable}) => {
 
                 {isEditable ? (
                     <>
-                        <Row className="">
+                        <Row xs={2} md={4} lg={6}>
                             <Col className="pr-2">
                                 <Button
                                     variant="primary"

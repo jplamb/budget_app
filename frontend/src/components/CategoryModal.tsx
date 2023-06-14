@@ -43,8 +43,12 @@ const CategoryModal: React.FC<CategoryModalProps> = (props) => {
         }
         setCategories((oldCategories: Category[]) => {
             console.log(`created new category: ${JSON.stringify(category)}`);
-            return [...oldCategories, category];
-        })
+            if (category.id) {
+                return oldCategories.map((oldCategory: Category) => oldCategory.id ===category.id ? {...category} : oldCategory);
+            } else {
+                return [...oldCategories, category];
+            }
+        });
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

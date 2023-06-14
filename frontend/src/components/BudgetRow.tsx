@@ -48,12 +48,16 @@ const BudgetRow: React.FC<BudgetRowProps> = ({ category , categoryActual, isTabl
                         <th className="categoryBudgetedAmount header text-center">
                             ${category.amount.toFixed(0)}
                         </th>
-                        <th className="categoryActualAmount header text-center">
-                            {formatForNegative(actualAmount)}
-                        </th>
-                        <th className="categoryDiffAmount header text-center">
-                            {formatForNegative(category.amount - actualAmount)}
-                        </th>
+                        {!isEditable && (
+                            <>
+                                <th className="categoryActualAmount header text-center">
+                                    {formatForNegative(actualAmount)}
+                                </th>
+                                <th className="categoryDiffAmount header text-center">
+                                    {formatForNegative(category.amount - actualAmount)}
+                                </th>
+                            </>
+                        )}
                     </>
                 ) : (
                     <>
@@ -63,12 +67,16 @@ const BudgetRow: React.FC<BudgetRowProps> = ({ category , categoryActual, isTabl
                         <td className="categoryBudgetedAmount text-center">
                             ${category.amount.toFixed(0)}
                         </td>
-                        <td className="categoryActualAmount text-center">
-                            {formatForNegative(actualAmount)}
-                        </td>
-                        <td className="categorydiffAmount text-center">
-                            {formatForNegative(category.amount - actualAmount)}
-                        </td>
+                        {!isEditable && (
+                            <>
+                                <td className="categoryActualAmount text-center">
+                                    {formatForNegative(actualAmount)}
+                                </td>
+                                <td className="categorydiffAmount text-center">
+                                    {formatForNegative(category.amount - actualAmount)}
+                                </td>
+                            </>
+                        )}
                         {isEditable && (
                             <>
                                 <td className="categoryEdit">

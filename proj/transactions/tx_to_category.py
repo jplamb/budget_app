@@ -65,4 +65,5 @@ TX_TO_CATEGORY = {
     "City of Austin T": TX.TXCategories.UTILITIES,
     "Reformed Uni": TX.TXCategories.TITHE,
     "ONE GAS TEXAS": TX.TXCategories.UTILITIES,
+    "ROUNDPOINT": TX.TXCategories.MORTGAGE,
 }
